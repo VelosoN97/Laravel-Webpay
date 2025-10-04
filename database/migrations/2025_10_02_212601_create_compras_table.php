@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('compras', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('session_id');
+            $table->float('total', 9, 2);
+            $table->tinyInteger('status')->comment('1: pendiente. 2: Aprobada.')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
